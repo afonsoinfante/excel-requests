@@ -1,0 +1,3 @@
+﻿<DnaLibrary>
+  <ExternalLibrary Path="excel-json-client.dna" Pack="true" />
+</DnaLibrary>
