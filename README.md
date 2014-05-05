@@ -20,7 +20,7 @@ OBJ_CLEAR(): clear object cache
 
 Example
 -------
-An example spreadsheet is available at [https://spreadgit.com/bjoern/excel-json-client](https://spreadgit.com/bjoern/excel-json-client)
+An example spreadsheet is available at [https://spreadgit.com/bjoern/excel-json-client](https://spreadgit.com/bjoern/excel-json-client). It shows the basic functionality by retrieving data from the [http://www.quandl.com](http://www.quandl.com) API.
 
 Usage
 -----
