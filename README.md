@@ -35,4 +35,4 @@ Use excel-json-client64.xll
 
 License & Authors
 -----------------
-- Author:: Bjoern Stiel (<bjoern@spreadgit.com>) (@spreadgit)
+- Author:: Bjoern Stiel (<bjoern.stiel@pathio.com>) (@path_io)
