@@ -3,6 +3,8 @@ excel-json-client
 
 A thin Excel client Add-In to retrieve JSON data in Excel.
 Uses Excel-DNA and is written in VB.NET.
+Check out http://optionexplicitvba.com/2014/05/09/developing-a-json-excel-add-in-with-vb-net/ for an overview.
+
 
 Requirements
 ------------
@@ -35,4 +37,4 @@ Use excel-json-client64.xll
 
 License & Authors
 -----------------
-- Author:: Bjoern Stiel (<bjoern.stiel@pathio.com>) (@path_io)
+- Author: Bjoern Stiel (<bjoern.stiel@pathio.com>) (@path_io)
