@@ -32,3 +32,5 @@
     artifact: /.*\.xll/
     draft: false
     prerelease: false
+    on:
+	  branch: master
