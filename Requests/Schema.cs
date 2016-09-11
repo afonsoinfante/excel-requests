@@ -16,7 +16,7 @@ namespace Requests
         public Schema(string url)
         {
             Url = url.TrimEnd(new char[] { '/' });
-            var baseAndPath = url.Split('#');
+            var baseAndPath = Url.Split('#');
             Base = baseAndPath[0];
             if (baseAndPath.Length == 2)
             {
