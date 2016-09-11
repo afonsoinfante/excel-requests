@@ -19,6 +19,6 @@
   - cmd: xcopy "%APPVEYOR_BUILD_FOLDER%\packages\ExcelDna.AddIn.0.33.9\tools\ExcelDnaPack.exe" "%APPVEYOR_BUILD_FOLDER%\Requests\bin\Release\Requests.dna" /Y
   - cmd: xcopy "%APPVEYOR_BUILD_FOLDER%\packages\ExcelDna.AddIn.0.33.9\tools\ExcelDnaPack.exe" "%APPVEYOR_BUILD_FOLDER%\Requests\bin\Release\Requests64.dna" /Y
   - ps: Get-ChildItem .\*.xll | % { Push-AppveyorArtifact $_.FullName -FileName $_.Name }
-  - appveyor PushArtifact bin\Release\Requests.xll -FileName Requests.xll -DeploymentName Requests.xll
+  - appveyor PushArtifact Requests\bin\Release\Requests.xll -FileName Requests.xll -DeploymentName Requests.xll
   test_script:
   - cmd: nunit3-console %APPVEYOR_BUILD_FOLDER%\RequestsTest\bin\Release\RequestsTest.dll --result=myresults.xml;format=AppVeyor
