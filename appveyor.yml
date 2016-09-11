@@ -21,4 +21,3 @@
   - ps: Get-ChildItem .\*.xll | % { Push-AppveyorArtifact $_.FullName -FileName $_.Name }
   test_script:
   - cmd: nunit3-console %APPVEYOR_BUILD_FOLDER%\RequestsTest\bin\Release\RequestsTest.dll --result=myresults.xml;format=AppVeyor
-  after_build:
