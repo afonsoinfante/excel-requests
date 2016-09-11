@@ -5,7 +5,7 @@
   skip_tags: true
   image: Visual Studio 2015
   environment:
-	configuration: release
+    configuration: release
   install:
   - cmd: nuget restore
   init:
