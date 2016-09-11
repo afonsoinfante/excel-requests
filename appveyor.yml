@@ -1,0 +1,17 @@
+- branches:
+    only:
+    - develop
+  version: 0.1.{build}
+  skip_tags: true
+  image: Visual Studio 2015
+  install:
+  - cmd: nuget restore
+  init:
+  - ps: iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
+  before_build:
+  - cmd: set PATH=%PATH%;C:\Program Files (x86)\Inno Setup 5\;C:\Program Files (x86)\Microsoft SDKs\Windows\v7.1A\Bin\
+
+  build_script:
+  - cmd: msbuild /logger:"C:\Program Files\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll" /p:Configuration=Release
+  test_script:
+  - cmd: nunit3-console %APPVEYOR_BUILD_FOLDER%\ParserTest\bin\Release\ParserTest.dll --result=myresults.xml;format=AppVeyor
