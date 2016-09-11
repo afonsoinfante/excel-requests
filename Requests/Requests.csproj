@@ -57,12 +57,12 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <None Include="packages.config" />
-    <None Include="README.md" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Accessor.cs" />
     <Compile Include="Addin.cs" />
     <Compile Include="Cache.cs" />
+    <Compile Include="ExcelParams.cs" />
     <Compile Include="Parser.cs" />
     <Compile Include="Providers\HttpProvider.cs" />
     <Compile Include="ExcelRenderer.cs" />

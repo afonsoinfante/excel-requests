@@ -14,20 +14,6 @@ namespace Requests
         private Dictionary<string, JToken> objects = new Dictionary<string, JToken>();
         private HttpProvider httpProvider = new HttpProvider();
 
-        public JToken Fetch(string url)
-        {
-            var json = httpProvider.Get(url);
-            return Parse(json);
-        }
-
-        public JToken Parse(string json)
-        {
-            if(json.StartsWith("["))
-                return JArray.Parse(json);
-
-            return JObject.Parse(json);
-        }
-
         public bool ContainsKey(string key)
         {
             return objects.ContainsKey(key);
@@ -36,11 +22,6 @@ namespace Requests
 
         public JToken Get(string key)
         {
-            if(!objects.ContainsKey(key))
-            {
-                objects[key] = Fetch(key);
-            }
-
             return objects[key];
         }
 

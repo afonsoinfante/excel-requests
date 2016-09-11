@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using ExcelDna.Integration;
 using Requests.Providers;
 
@@ -10,39 +11,64 @@ namespace Requests
         private static HttpProvider httpProvider = new HttpProvider();
 
         [ExcelFunction(Name = "REQUESTS.GET")]
-        public static object Get(string url)
+        public static object HttpGet(string url, object headers)
         {
             try
             {
-                var schema = new Schema(url);
-                var token = cache.ContainsKey(schema.Base) ? cache.Get(url) : cache.Set(url, Parser.Parse(httpProvider.Get(url)));
-                if (schema.Path != null)
-                    token = Accessor.Get(token, schema.Path);
+                url = Schema.Trim(url);
+                var httpHeaders = headers is ExcelMissing ?
+                    new Dictionary<string, string>() :
+                    ExcelParams.AsDictionary<string>(headers as object[,]);
 
-                return ExcelRenderer.Render(token, schema.Url, true);
+                if (!cache.ContainsKey(url))
+                    cache.Set(url, httpProvider.Get(url, httpHeaders));
+                return url;
             }
             catch(Exception e)
             {
                 return e.Message;
             }
-
         }
 
 
-        [ExcelFunction(Name = "REQUESTS.PROPERTIES")]
-        public static object Keys(string url)
+
+        [ExcelFunction(Name = "REQUESTS.DICT.GET")]
+        public static object Get(string key, object property)
         {
             try
             {
+                var url = property is ExcelMissing ? key : (key.Contains("#") ? key + "/" + property.ToString() : key + "#" + property.ToString());
                 var schema = new Schema(url);
-                var token = cache.ContainsKey(schema.Base) ? cache.Get(url) : cache.Set(url, Parser.Parse(httpProvider.Get(url)));
+                var token = cache.Get(schema.Base);
                 if (schema.Path != null)
                     token = Accessor.Get(token, schema.Path);
 
-                var keys = Accessor.Properties(token);
-                var result = new string[keys.Count, 1];
-                for (var i = 0; i < keys.Count; i++)
-                    result[i, 0] = keys[i];
+                return ExcelRenderer.Render(token, schema.Url, true);
+            }
+            catch (Exception e)
+            {
+                return e.Message;
+            }
+        }
+
+
+
+
+
+        [ExcelFunction(Name = "REQUESTS.DICT.KEYS")]
+        public static object Properties(string key)
+        {
+            try
+            {
+                var schema = new Schema(key);
+                var token = cache.Get(schema.Base);
+                if (schema.Path != null)
+                    token = Accessor.Get(token, schema.Path);
+
+                var properties = Accessor.Properties(token);
+                var result = new string[properties.Count, 1];
+                for (var i = 0; i < properties.Count; i++)
+                    result[i, 0] = properties[i];
                 return result;
 
             }
@@ -50,11 +76,7 @@ namespace Requests
             {
                 return e.Message;
             }
-
         }
-
-
-
     }
 
 }

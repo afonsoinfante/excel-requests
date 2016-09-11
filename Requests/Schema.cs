@@ -13,9 +13,15 @@ namespace Requests
         public string Path { get; private set; }
 
 
+        public static string Trim(string url)
+        {
+            return url.TrimEnd(new char[] { '/' });
+        }
+
+
         public Schema(string url)
         {
-            Url = url.TrimEnd(new char[] { '/' });
+            Url = Trim(url);
             var baseAndPath = Url.Split('#');
             Base = baseAndPath[0];
             if (baseAndPath.Length == 2)
