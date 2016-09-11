@@ -29,7 +29,7 @@
     description: 'Excel Requests'
     provider: GitHub
     auth_token:
-      secure: 6ekcaIHA+U5OoEkJ/NqFxDPTz41QEtLgLXZEG0WS9MMUDADoNjEKJ5XVtnZ+Agleq/dE5traDq8DwMQVS/pcMoRUf3N1PPsFFvFqGvO/15w=
+      secure: u1oi+34ucFzW+B5tKlGUMP2NjPISw4G61InbYVF3qYq6onAC4+rA92XRn+aDhMEW
     artifact: /.*\.xll/
     draft: false
     prerelease: false
