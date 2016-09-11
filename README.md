@@ -15,8 +15,10 @@ Excel supports JSON via HTTP.
 Excel Functions
 ---------------
 
-- =REQUESTS.GET(url, ...)
-- =REQUESTS.KEYS(url, ...)
+- REQUESTS.GET(url, ...)
+- REQUESTS.PUT(url, ...)
+- REQUESTS.POST(url, ...)
+- REQUESTS.KEYS(url, ...)
 
 
 
