@@ -14,7 +14,7 @@
   - cmd: msbuild /logger:"C:\Program Files\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll" /p:Configuration=Release
   after_build:
   - cmd: >- 
-	xcopy "%APPVEYOR_BUILD_FOLDER%\packages\ExcelDna.AddIn.0.33.9\tools\ExcelDna.xll" "%APPVEYOR_BUILD_FOLDER%\Requests\bin\Release\Requests64.xll*" /C /Y
+    xcopy "%APPVEYOR_BUILD_FOLDER%\packages\ExcelDna.AddIn.0.33.9\tools\ExcelDna.xll" "%APPVEYOR_BUILD_FOLDER%\Requests\bin\Release\Requests64.xll*" /C /Y
 
     "%APPVEYOR_BUILD_FOLDER%\packages\ExcelDna.AddIn.0.33.9\tools\ExcelDnaPack.exe" "%APPVEYOR_BUILD_FOLDER%\Requests\bin\Release\Requests.dna" /Y
 
