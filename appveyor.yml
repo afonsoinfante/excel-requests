@@ -4,8 +4,6 @@
   version: 0.1.{build}
   skip_tags: true
   image: Visual Studio 2015
-  environment:
-    configuration: release
   install:
   - cmd: nuget restore
   init:
@@ -15,13 +13,12 @@
   build_script:
   - cmd: msbuild /logger:"C:\Program Files\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll" /p:Configuration=Release
   after_build:
-  - cmd: xcopy "%APPVEYOR_BUILD_FOLDER%\packages\ExcelDna.AddIn.0.33.9\tools\ExcelDna.xll" "%APPVEYOR_BUILD_FOLDER%\Requests\bin\$(configuration)\Requests.xll*" /C /Y
-  - cmd: xcopy "%APPVEYOR_BUILD_FOLDER%\Requests\bin\Release\Requests.dna" "%APPVEYOR_BUILD_FOLDER%\Requests\bin\$(configuration)\Requests64.dna*" /C /Y
-  - cmd: xcopy "%APPVEYOR_BUILD_FOLDER%\packages\ExcelDna.AddIn.0.33.9\tools\ExcelDna64.xll" "%APPVEYOR_BUILD_FOLDER%\Requests\bin\$(configuration)\Requests64.xll*" /C /Y
-  - cmd: xcopy "%APPVEYOR_BUILD_FOLDER%\packages\ExcelDna.AddIn.0.33.9\tools\ExcelDnaPack.exe" "%APPVEYOR_BUILD_FOLDER%\Requests\bin\$(configuration)\Requests.dna" /Y
-  - cmd: xcopy "%APPVEYOR_BUILD_FOLDER%\packages\ExcelDna.AddIn.0.33.9\tools\ExcelDnaPack.exe" "%APPVEYOR_BUILD_FOLDER%\Requests\bin\$(configuration)\Requests64.dna" /Y
+  - cmd: xcopy "%APPVEYOR_BUILD_FOLDER%\packages\ExcelDna.AddIn.0.33.9\tools\ExcelDna.xll" "%APPVEYOR_BUILD_FOLDER%\Requests\bin\Release\Requests.xll*" /C /Y
+  - cmd: xcopy "%APPVEYOR_BUILD_FOLDER%\Requests\bin\Release\Requests.dna" "%APPVEYOR_BUILD_FOLDER%\Requests\bin\Release\Requests64.dna*" /C /Y
+  - cmd: xcopy "%APPVEYOR_BUILD_FOLDER%\packages\ExcelDna.AddIn.0.33.9\tools\ExcelDna64.xll" "%APPVEYOR_BUILD_FOLDER%\Requests\bin\Release\Requests64.xll*" /C /Y
+  - cmd: xcopy "%APPVEYOR_BUILD_FOLDER%\packages\ExcelDna.AddIn.0.33.9\tools\ExcelDnaPack.exe" "%APPVEYOR_BUILD_FOLDER%\Requests\bin\Release\Requests.dna" /Y
+  - cmd: xcopy "%APPVEYOR_BUILD_FOLDER%\packages\ExcelDna.AddIn.0.33.9\tools\ExcelDnaPack.exe" "%APPVEYOR_BUILD_FOLDER%\Requests\binRelease\Requests64.dna" /Y
   test_script:
   - cmd: nunit3-console %APPVEYOR_BUILD_FOLDER%\RequestsTest\bin\Release\RequestsTest.dll --result=myresults.xml;format=AppVeyor
   artifacts:
-  - path: Requests.xll
-  - path: Requests64.xll
+  - path: '**\*.xll'
