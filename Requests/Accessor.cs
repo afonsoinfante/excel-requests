@@ -34,7 +34,7 @@ namespace Requests
             return value;
         }
 
-        public static IList<string> Keys(JToken token)
+        public static IList<string> Properties(JToken token)
         {
 
             if (token is JArray)

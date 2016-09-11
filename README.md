@@ -18,7 +18,7 @@ Excel Functions
 - REQUESTS.GET(url, ...)
 - REQUESTS.PUT(url, ...)
 - REQUESTS.POST(url, ...)
-- REQUESTS.KEYS(url, ...)
+- REQUESTS.PROPERTIES(url, ...)
 
 
 

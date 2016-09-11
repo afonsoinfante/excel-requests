@@ -13,6 +13,6 @@
   build_script:
   - cmd: msbuild /logger:"C:\Program Files\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll" /p:Configuration=Release
   after_build:
-  - cmd: xcopy "%APPVEYOR_BUILD_FOLDER%\packages\ExcelDna.AddIn.0.33.9\tools\ExcelDna.xll" "$%APPVEYOR_BUILD_FOLDER%\Requests\Requests.xll*" /C /Y
+  - cmd: xcopy "%APPVEYOR_BUILD_FOLDER%\packages\ExcelDna.AddIn.0.33.9\tools\ExcelDna.xll" "$%APPVEYOR_BUILD_FOLDER%\Requests\bin\Release\Requests.xll" /C /Y
   test_script:
   - cmd: nunit3-console %APPVEYOR_BUILD_FOLDER%\Requests\bin\Release\RequestsTest.dll --result=myresults.xml;format=AppVeyor

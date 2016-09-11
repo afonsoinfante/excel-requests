@@ -29,7 +29,7 @@ namespace Requests
         }
 
 
-        [ExcelFunction(Name = "REQUESTS.KEYS")]
+        [ExcelFunction(Name = "REQUESTS.PROPERTIES")]
         public static object Keys(string url)
         {
             try
@@ -39,7 +39,7 @@ namespace Requests
                 if (schema.Path != null)
                     token = Accessor.Get(token, schema.Path);
 
-                var keys = Accessor.Keys(token);
+                var keys = Accessor.Properties(token);
                 var result = new string[keys.Count, 1];
                 for (var i = 0; i < keys.Count; i++)
                     result[i, 0] = keys[i];
