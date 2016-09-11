@@ -81,6 +81,6 @@
 xcopy "$(TargetDir)Requests.dna*" "$(TargetDir)Requests64.dna*" /C /Y
 xcopy "$(SolutionDir)\packages\ExcelDna.AddIn.0.33.9\tools\ExcelDna64.xll" "$(TargetDir)Requests64.xll*" /C /Y
 "$(SolutionDir)\packages\ExcelDna.AddIn.0.33.9\tools\ExcelDnaPack.exe" "$(TargetDir)Requests.dna" /Y
-"$(SolutionDir)\packages\ExcelDna.AddIn.0.33.9\tools\ExcelDnaPack.exe" "$(TargetDir)Requests-AddIn64.dna" /Y</PostBuildEvent>
+"$(SolutionDir)\packages\ExcelDna.AddIn.0.33.9\tools\ExcelDnaPack.exe" "$(TargetDir)Requests64.dna" /Y</PostBuildEvent>
   </PropertyGroup>
 </Project>
