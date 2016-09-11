@@ -13,11 +13,10 @@
   build_script:
   - cmd: msbuild /logger:"C:\Program Files\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll" /p:Configuration=Release
   after_build:
-  - cmd: >-
-	xcopy "$(SolutionDir)\packages\ExcelDna.AddIn.0.33.9\tools\ExcelDna.xll" "$(TargetDir)Requests-AddIn.xll*" /C /Y
-	xcopy "$(TargetDir)Requests-AddIn.dna*" "$(TargetDir)Requests-AddIn64.dna*" /C /Y
-	xcopy "$(SolutionDir)\packages\ExcelDna.AddIn.0.33.9\tools\ExcelDna64.xll" "$(TargetDir)Requests-AddIn64.xll*" /C /Y
-	"$(SolutionDir)\packages\ExcelDna.AddIn.0.33.9\tools\ExcelDnaPack.exe" "$(TargetDir)Requests-AddIn.dna" /Y
-	"$(SolutionDir)\packages\ExcelDna.AddIn.0.33.9\tools\ExcelDnaPack.exe" "$(TargetDir)Requests-AddIn64.dna" /Y
+  - cmd: xcopy "$(SolutionDir)\packages\ExcelDna.AddIn.0.33.9\tools\ExcelDna.xll" "$(TargetDir)Requests-AddIn.xll*" /C /Y
+  - cmd: xcopy "$(TargetDir)Requests-AddIn.dna*" "$(TargetDir)Requests-AddIn64.dna*" /C /Y
+  - cmd: xcopy "$(SolutionDir)\packages\ExcelDna.AddIn.0.33.9\tools\ExcelDna64.xll" "$(TargetDir)Requests-AddIn64.xll*" /C /Y
+  - cmd: "$(SolutionDir)\packages\ExcelDna.AddIn.0.33.9\tools\ExcelDnaPack.exe" "$(TargetDir)Requests-AddIn.dna" /Y
+  - cmd: "$(SolutionDir)\packages\ExcelDna.AddIn.0.33.9\tools\ExcelDnaPack.exe" "$(TargetDir)Requests-AddIn64.dna" /Y
   test_script:
   - cmd: nunit3-console %APPVEYOR_BUILD_FOLDER%\ParserTest\bin\Release\ParserTest.dll --result=myresults.xml;format=AppVeyor
