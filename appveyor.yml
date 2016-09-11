@@ -13,14 +13,7 @@
   build_script:
   - cmd: msbuild /logger:"C:\Program Files\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll" /p:Configuration=Release
   after_build:
-  - cmd: >- 
-    xcopy "%APPVEYOR_BUILD_FOLDER%\packages\ExcelDna.AddIn.0.33.9\tools\ExcelDna.xll" "%APPVEYOR_BUILD_FOLDER%\Requests\bin\Release\Requests64.xll*" /C /Y
-
-    "%APPVEYOR_BUILD_FOLDER%\packages\ExcelDna.AddIn.0.33.9\tools\ExcelDnaPack.exe" "%APPVEYOR_BUILD_FOLDER%\Requests\bin\Release\Requests.dna" /Y
-
-    "%APPVEYOR_BUILD_FOLDER%\packages\ExcelDna.AddIn.0.33.9\tools\ExcelDnaPack.exe" "%APPVEYOR_BUILD_FOLDER%\Requests\bin\Release\Requests64.dna" /Y
-
-
+  - cmd: xcopy "%APPVEYOR_BUILD_FOLDER%\packages\ExcelDna.AddIn.0.33.9\tools\ExcelDna.xll" "%APPVEYOR_BUILD_FOLDER%\Requests\bin\Release\Requests64.xll*" /C /Y "%APPVEYOR_BUILD_FOLDER%\packages\ExcelDna.AddIn.0.33.9\tools\ExcelDnaPack.exe" "%APPVEYOR_BUILD_FOLDER%\Requests\bin\Release\Requests.dna" /Y "%APPVEYOR_BUILD_FOLDER%\packages\ExcelDna.AddIn.0.33.9\tools\ExcelDnaPack.exe" "%APPVEYOR_BUILD_FOLDER%\Requests\bin\Release\Requests64.dna" /Y
   test_script:
   - cmd: nunit3-console %APPVEYOR_BUILD_FOLDER%\Requests\bin\Release\RequestsTest.dll --result=myresults.xml;format=AppVeyor
 
