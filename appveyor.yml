@@ -24,12 +24,12 @@
   test_script:
   - cmd: nunit3-console %APPVEYOR_BUILD_FOLDER%\RequestsTest\bin\Release\RequestsTest.dll --result=myresults.xml;format=AppVeyor
 
-deploy:
-  release: excel-requests-v$(appveyor_build_version)
-  description: 'Excel Requests'
-  provider: GitHub
-  auth_token:
-    secure: 6ekcaIHA+U5OoEkJ/NqFxDPTz41QEtLgLXZEG0WS9MMUDADoNjEKJ5XVtnZ+Agleq/dE5traDq8DwMQVS/pcMoRUf3N1PPsFFvFqGvO/15w=
-  artifact: /.*\.xll/          
-  draft: false
-  prerelease: false
+  deploy:
+    release: excel-requests-v$(appveyor_build_version)
+    description: 'Excel Requests'
+    provider: GitHub
+    auth_token:
+      secure: 6ekcaIHA+U5OoEkJ/NqFxDPTz41QEtLgLXZEG0WS9MMUDADoNjEKJ5XVtnZ+Agleq/dE5traDq8DwMQVS/pcMoRUf3N1PPsFFvFqGvO/15w=
+    artifact: /.*\.xll/
+    draft: false
+    prerelease: false
