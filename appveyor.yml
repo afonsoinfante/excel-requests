@@ -21,5 +21,5 @@
   test_script:
   - cmd: nunit3-console %APPVEYOR_BUILD_FOLDER%\RequestsTest\bin\Release\RequestsTest.dll --result=myresults.xml;format=AppVeyor
   artifacts:
-  - path: bin\Release\*.xll
+  - path: %APPVEYOR_BUILD_FOLDER%\Requests\bin\Release\*.xll
     name: Addin
