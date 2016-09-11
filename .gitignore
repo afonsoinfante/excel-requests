@@ -1,2 +1,9 @@
 *.xlsb
-.DS_Store
+bin/
+packages/
+bin/
+obj/
+build/
+.vs
+*.exe
+*.log

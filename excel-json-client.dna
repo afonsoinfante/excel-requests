@@ -1,6 +1,0 @@
-﻿<DnaLibrary Name="excel-json-client"> 
-  <Project Language="VB" >
-    <Reference Path="Newtonsoft.Json.dll" />
-    <SourceItem Path="excel-json-client.vb" />
-  </Project>
-</DnaLibrary>
