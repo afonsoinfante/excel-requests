@@ -1,4 +1,4 @@
-<DnaLibrary Name="Requests Add-In" RuntimeVersion="v4.0">
+<DnaLibrary Name="Excel Requests" RuntimeVersion="v4.0">
   <ExternalLibrary Path="ClassLibrary.dll" LoadFromBytes="true" Pack="true" />
   
   <!-- 
