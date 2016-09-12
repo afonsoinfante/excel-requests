@@ -34,12 +34,17 @@ namespace Requests.Providers
                     {
                         var text = reader.ReadToEnd();
                         response["Text"] = text;
-                        if(httpResponse.ContentType.ToLower().Contains("application/json"))
+                        if (httpResponse.ContentType.ToLower().Contains("application/json"))
                             response.Add("Json", Parser.Parse(text));
                     }
                 }
             }
             return response;
+        }
+
+        public JToken Put(string url, JToken payload, Dictionary<string, string> headers)
+        {
+            return null;
         }
     }
 }
