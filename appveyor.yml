@@ -39,7 +39,7 @@ deploy:
   description: 'Excel Requests v$(appveyor_build_version) (stable)'
   auth_token:
     secure: u1oi+34ucFzW+B5tKlGUMP2NjPISw4G61InbYVF3qYq6onAC4+rA92XRn+aDhMEW
-  artifact: /.*\.xll/
+  artifact: /.*\.*/
   draft: false
   prerelease: false
   on:
