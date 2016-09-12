@@ -21,9 +21,9 @@ after_build:
 test_script:
 - cmd: nunit3-console %APPVEYOR_BUILD_FOLDER%\RequestsTest\bin\Release\RequestsTest.dll --result=myresults.xml;format=AppVeyor
 deploy:
+- provider: GitHub
   release: v$(appveyor_build_version)
-  description: 'Excel Requests'
-  provider: GitHub
+  description: 'Excel Requests v$(appveyor_build_version)'
   auth_token:
     secure: u1oi+34ucFzW+B5tKlGUMP2NjPISw4G61InbYVF3qYq6onAC4+rA92XRn+aDhMEW
   artifact: /.*\.xll/
