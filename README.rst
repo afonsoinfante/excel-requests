@@ -1,7 +1,7 @@
 Excel Requests: HTTP for Humans
 ===============================
 
-image:: https://ci.appveyor.com/api/projects/status/m5uqt0mdftmvu9of?svg=true
+.. image:: https://ci.appveyor.com/api/projects/status/m5uqt0mdftmvu9of?svg=true
 
 
 Excel Requests is the only HTTP Addin for Excel, safe for human consumption.
