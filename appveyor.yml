@@ -1,5 +1,7 @@
 version: 0.1.{build}
 skip_tags: true
+skip_commits:
+  message: /\[skip ci\]/
 image: Visual Studio 2015
 install:
 - cmd: nuget restore
@@ -22,8 +24,8 @@ test_script:
 - cmd: nunit3-console %APPVEYOR_BUILD_FOLDER%\RequestsTest\bin\Release\RequestsTest.dll --result=myresults.xml;format=AppVeyor
 deploy:
 - provider: GitHub
-  release: v$(appveyor_build_version)-rc
-  description: 'Excel Requests release candidate v$(appveyor_build_version)-rc'
+  release: v$(appveyor_build_version)-beta
+  description: 'Excel Requests v$(appveyor_build_version)-beta (unstable)'
   auth_token:
     secure: u1oi+34ucFzW+B5tKlGUMP2NjPISw4G61InbYVF3qYq6onAC4+rA92XRn+aDhMEW
   artifact: /.*\.xll/
@@ -33,7 +35,7 @@ deploy:
     branch: staging
 - provider: GitHub
   release: v$(appveyor_build_version)
-  description: 'Excel Requests v$(appveyor_build_version)'
+  description: 'Excel Requests v$(appveyor_build_version) (stable)'
   auth_token:
     secure: u1oi+34ucFzW+B5tKlGUMP2NjPISw4G61InbYVF3qYq6onAC4+rA92XRn+aDhMEW
   artifact: /.*\.xll/
