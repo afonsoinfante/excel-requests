@@ -11,13 +11,13 @@ Excel Requests is heavily inspired by Kenneth Reitz' awesome Python Requests whi
 Source
 -------------
 
-The Excel Requests source code is hosted at `https://github.com/Pathio/excel-requests <https://github.com/Pathio/excel-requests>`_. 
+The Excel Requests source code is hosted at `https://github.com/Pathio/excel-requests <https://github.com/Pathio/excel-requests>`_
 
 
 
 License & Authors
 -----------------
 
-- This project is maintained by Bjoern Stiel at `Pathio.com <https://www.pathio.com>`_. 
+- This project is maintained by Bjoern Stiel at `Pathio.com <https://www.pathio.com>`_
 - Drop me an email `bjoern.stiel@pathio.com <mailto:bjoern.stiel@pathio.com>`_. or tweet me `@bjoernstiel <https://twitter.com/bjoernstiel>`_
-- This project is licensed under the terms of the 'BSD license <https://opensource.org/licenses/BSD-3-Clause>`_
+- This project is licensed under the terms of the `BSD license <https://opensource.org/licenses/BSD-3-Clause>`_
