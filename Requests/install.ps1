@@ -1,6 +1,7 @@
-﻿$addinPath = $env:LOCALAPPDATA + "\Excel\Addins\Requests\";
-$url = "https://api.github.com/repos/pathio/excel-requests/releases/latest";
-$docsUrl = "https://github.com/pathio/excel-requests";
+﻿$addinName = "Requests"
+$addinPath = "$env:APPDATA\Microsoft\AddIns\$addinName"
+$url = "https://api.github.com/repos/pathio/excel-requests/releases/latest"
+$docsUrl = "https://github.com/pathio/excel-requests"
 
 try
 {
@@ -104,12 +105,29 @@ function Get-BinaryType
 }
 
 
+
+
+function Get-InstalledVersion($registry, $name) {
+	$properties = Get-Item -Path $registryPath | Select-Object -ExpandProperty property | where {$_ -like 'OPEN*'} | Sort-Object $_
+	$values = $properties | ForEach-Object { (Get-ItemProperty $registry -Name $_).$_ }
+	$values = $values | where {$_ -like "*$name*.xll" -or $_ -like "*$name.xll"} | ForEach-Object { $_.replace("`"","").replace("/R ", "")}
+	if($values.Count -eq 0) {
+		return $null
+	}
+	return $values.Split("\")[-2]
+}
+
+
+
+
 Write-Host "Running excel-requests Addin Installer...";
 Write-Host "For help, visit $docsUrl";
 Write-Host "Searching for installed Excel version...";
 
 $excelPath = (Get-ItemProperty -Path "Registry::HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\excel.exe").'(default)'
 $excelVersion = (Split-Path (Split-Path $excelPath -Parent) -Leaf).replace("Office", "") + ".0"
+$registryPath = "Registry::HKEY_CURRENT_USER\SOFTWARE\Microsoft\Office\$excelVersion\Excel\Options"
+$installed = Get-InstalledVersion $registryPath $addinName
 
 $bitness = "32";
 if ((Get-BinaryType $excelPath) -eq [BinaryType]::BIT64)
@@ -117,21 +135,22 @@ if ((Get-BinaryType $excelPath) -eq [BinaryType]::BIT64)
 	$bitness = "64";
 }
 
+
 Write-Host "Path: $excelPath";
 Write-Host "Version: $excelVersion";
 Write-Host "Bitness: $bitness-bit";
 
 
-
-Write-Host Checking latest available excel requests release...;
+Write-Host "Checking latest available excel requests release...";
 $release = Invoke-RestMethod -Method Get -Uri $url
 $version = $release.name;
 
-Write-Host Latest addin version is $version;
 
-$path = "";
-$versionPath = $addinPath + $version;
-$registryPath = "Registry::HKEY_CURRENT_USER\SOFTWARE\Microsoft\Office\$excelVersion\Excel\Options";
+Write-Host "Latest: $version";
+Write-Host "Installed: $installedVersion";
+
+
+$versionPath = "$addinPath\$version";
 
 New-Item -ItemType Directory -Force -Path $versionPath
 
@@ -146,20 +165,43 @@ foreach ($asset in $release.assets) {
 }
 
 
+$index = Get-Content "$versionPath\index.json" | ConvertFrom-Json
+$filename = $index.$bitness
+$path = "$versionPath\$filename"
 
-Write-Host "Installing Addin...";
 
+
+Write-Host "Installing Addin: $path...";
 $properties = Get-Item -Path $registryPath | Select-Object -ExpandProperty property | where {$_ -like 'OPEN*'} | Sort-Object $_
-
 
 if($properties.Count -eq 0)
 {
-	Write-Host "Count=0"
-	New-ItemProperty -Path $registryPath -Name "OPEN" -Value "/R $assetPath"
-
+	New-ItemProperty -Path $registryPath -Name "OPEN" -Value "/R $path"
 }
 else 
 {
-	Write-Host "Count=$properties.Count"
+	#given the number of Addins, create list of expected OPEN keys
+	$keys = 0..($properties.Count-1) | ForEach-Object { if ($_ -eq 0) {"OPEN"} else {"OPEN$_"} }
+
+	#get existing values/replace with new
+	$values = $properties | ForEach-Object { (Get-ItemProperty $registryPath -Name $_).$_ }
+	$values = $values | ForEach-Object { if ($_ -like "*$addinName*.xll" -or $_ -like "*$addinName.xll") { "/R $path"} else { $_ }}
+
+	#delete all existing keys
+	foreach($property in $properties){
+		Remove-ItemProperty $registryPath -Name $property
+	}
+
+	#create keys
+	$i = 0;
+	foreach($key in $keys){
+		New-ItemProperty -Path $registryPath -Name "$key" -Value @($values)[$i]
+		$i++
+	}
 
 }
+
+exit
+
+
+Write-Host "excel-requests $version installed successfully, please restart Excel";
