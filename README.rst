@@ -34,7 +34,7 @@ To install Excel Requests, simply:
 Documentation
 -------------
 
-Documentation is available at `http://excel-requests.readthedocs.io/en/latest/ <http://excel-requests.readthedocs.io/en/latest/>`_
+Documentation is available at `http://excel-requests.readthedocs.io/en/stable/ <http://excel-requests.readthedocs.io/en/stable/>`_
 
 
 
