@@ -32,6 +32,23 @@ namespace Requests
 
 
 
+        [ExcelFunction(Name = "REQUESTS.PUT")]
+        public static object HttpPut(string url, string payload, object headers)
+        {
+            try
+            {
+                //dummy
+                return url;
+            }
+            catch (Exception e)
+            {
+                return e.Message;
+            }
+        }
+
+
+
+
         [ExcelFunction(Name = "REQUESTS.DICT.GET")]
         public static object Get(string key, object property)
         {
