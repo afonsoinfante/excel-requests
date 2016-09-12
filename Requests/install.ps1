@@ -201,7 +201,4 @@ else
 
 }
 
-exit
-
-
 Write-Host "excel-requests $version installed successfully, please restart Excel";
