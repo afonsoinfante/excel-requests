@@ -1,6 +1,9 @@
 Excel Requests: HTTP for Humans
 ===============================
 
+image:: https://ci.appveyor.com/api/projects/status/m5uqt0mdftmvu9of?svg=true
+
+
 Excel Requests is the only HTTP Addin for Excel, safe for human consumption.
 
 Excel Requests is heavily inspired by Kenneth Reitz' awesome Python Requests which can be found at `http://docs.python-requests.org/en/master/ <http://docs.python-requests.org/en/master/>`_
