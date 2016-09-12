@@ -21,3 +21,13 @@ License & Authors
 - This project is maintained by Bjoern Stiel at `Pathio.com <https://www.pathio.com>`_
 - Drop me an email `bjoern.stiel@pathio.com <mailto:bjoern.stiel@pathio.com>`_. or tweet me `@bjoernstiel <https://twitter.com/bjoernstiel>`_
 - This project is licensed under the terms of the `BSD license <https://opensource.org/licenses/BSD-3-Clause>`_
+
+
+
+
+.. toctree::
+    :maxdepth: 2
+    :hidden:
+
+    installation
+    quickstart
