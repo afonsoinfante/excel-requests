@@ -4,38 +4,6 @@ Excel Requests: HTTP for Humans
 Excel Requests is the only HTTP Addin for Excel, safe for human consumption.
 
 
-
-Feature Support
----------------
-
-Excel supports JSON via HTTP.
-
-
-
-Excel Functions
----------------
-
-- REQUESTS.GET(...)
-- REQUESTS.DICT.GET(...)
-
-
-
-
-Installation
-------------
-
-To install Excel Requests, simply:
-
-
-
-
-Documentation
--------------
-
-Documentation is available at http://excel-requests.readthedocs.io/en/latest/.
-
-
-
 Source
 -------------
 
