@@ -1,7 +1,6 @@
-﻿$url = "https://api.github.com/repos/pathio/excel-requests/releases/latest";
-
-
-
+﻿$addinPath = $env:LOCALAPPDATA + "\Excel\Addins\Requests\";
+$url = "https://api.github.com/repos/pathio/excel-requests/releases/latest";
+$docsUrl = "https://github.com/pathio/excel-requests";
 
 try
 {
@@ -105,19 +104,24 @@ function Get-BinaryType
 }
 
 
-Write-Host Checking installed Excel...;
-$path = (Get-ItemProperty -Path "Registry::HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\excel.exe").'(default)'
+Write-Host "Running excel-requests Addin Installer...";
+Write-Host "For help, visit $docsUrl";
+Write-Host "Searching for installed Excel version...";
 
-Write-Host Excel found: $path;
-Write-Host Checking installed Excel version...;
+$excelPath = (Get-ItemProperty -Path "Registry::HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\excel.exe").'(default)'
+$excelVersion = (Split-Path (Split-Path $excelPath -Parent) -Leaf).replace("Office", "") + ".0"
 
 $bitness = "32";
-if ((Get-BinaryType $path) -eq [BinaryType]::BIT64)
+if ((Get-BinaryType $excelPath) -eq [BinaryType]::BIT64)
 {
 	$bitness = "64";
 }
 
-Write-Host Your Excel version is $bitness-bit;
+Write-Host "Path: $excelPath";
+Write-Host "Version: $excelVersion";
+Write-Host "Bitness: $bitness-bit";
+
+
 
 Write-Host Checking latest available excel requests release...;
 $release = Invoke-RestMethod -Method Get -Uri $url
@@ -125,15 +129,37 @@ $version = $release.name;
 
 Write-Host Latest addin version is $version;
 
-$download_url = "";
+$path = "";
+$versionPath = $addinPath + $version;
+$registryPath = "Registry::HKEY_CURRENT_USER\SOFTWARE\Microsoft\Office\$excelVersion\Excel\Options";
+
+New-Item -ItemType Directory -Force -Path $versionPath
 
 
 foreach ($asset in $release.assets) {
-	$asset.name
-	if($asset.name.Contains($bitness)){
-		$download_url = $asset.browser_download_url;
+	$target = $versionPath + "\"+ $asset.name;
+	$downloadUrl = $asset.browser_download_url;
+	if(![System.IO.File]::Exists($target)){
+		Write-Host Downloading asset from $downloadUrl => $target...;
+		Invoke-WebRequest -Uri $downloadUrl -OutFile $target;
 	}
 }
 
 
-Write-Host Download asset from $download_url;
+
+Write-Host "Installing Addin...";
+
+$properties = Get-Item -Path $registryPath | Select-Object -ExpandProperty property | where {$_ -like 'OPEN*'} | Sort-Object $_
+
+
+if($properties.Count -eq 0)
+{
+	Write-Host "Count=0"
+	New-ItemProperty -Path $registryPath -Name "OPEN" -Value "/R $assetPath"
+
+}
+else 
+{
+	Write-Host "Count=$properties.Count"
+
+}
