@@ -6,7 +6,7 @@ Excel Requests: HTTP for Humans
 
 Excel Requests is the only HTTP Addin for Excel, safe for human consumption.
 
-Excel Requests is heavily inspired by Kenneth Reitz' awesome Python Requests which can be found at `http://docs.python-requests.org/en/master/ <http://docs.python-requests.org/en/master/>`_
+Excel Requests is heavily inspired by Kenneth Reitz' popular Python Requests.
 
 
 Feature Support
@@ -19,9 +19,10 @@ Excel supports JSON via HTTP.
 Excel Functions
 ---------------
 
-- REQUESTS.GET
-- REQUESTS.DICT.GET
-- REQUESTS.DICT.KEYS
+- REQUESTS.GET (HTTP get, returns a dictionary)
+- REQUESTS.FLUSH (flush the cache)
+- REQUESTS.DICT.GET (get dictionary field)
+- REQUESTS.DICT.KEYS (list dictionary field)
 
 
 
@@ -37,7 +38,7 @@ To install Excel Requests, simply:
 Documentation
 -------------
 
-Documentation is available at `http://excel-requests.readthedocs.io/en/latest/ <http://excel-requests.readthedocs.io/en/latest/>`_
+Documentation is available at `http://excel-requests.pathio.com/en/latest/ <http://excel-requests.pathio.com/en/latest/>`_
 
 
 
