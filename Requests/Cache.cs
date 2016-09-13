@@ -14,6 +14,26 @@ namespace Requests
         private Dictionary<string, JToken> objects = new Dictionary<string, JToken>();
         private HttpProvider httpProvider = new HttpProvider();
 
+
+        public int Count
+        {
+            get
+            {
+                return objects.Count;
+            }
+        }
+
+        public void Flush()
+        {
+            objects.Clear();
+        }
+
+        public void Flush(string key)
+        {
+            if(objects.ContainsKey(key))
+                objects[key].Remove();
+        }
+
         public bool ContainsKey(string key)
         {
             return objects.ContainsKey(key);

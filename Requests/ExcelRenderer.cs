@@ -16,6 +16,9 @@ namespace Requests
             if (token.Type == JTokenType.Integer)
                 return token.ToObject<int>();
 
+            if (token.Type == JTokenType.Float)
+                return token.ToObject<double>();
+
             if (token.Type == JTokenType.String)
                 return token.ToObject<string>();
 

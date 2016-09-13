@@ -23,6 +23,7 @@ namespace Requests
 
         }
 
+
         public static JToken Get(JToken o, string path)
         {
             var parts = path.Split(delimiter);
@@ -33,6 +34,29 @@ namespace Requests
             }
             return value;
         }
+
+
+        public static JToken Set(JToken token, string path, JToken value)
+        {
+            var parts = path.Split(delimiter);
+            var count = parts.Length;
+            var o = token;
+            for(var i=0; i<count; i++)
+            {
+                if (i < count - 1)
+                {
+                    o[parts[i]] = new JObject();
+                    o = o[parts[i]];
+                }
+                else
+                {
+                    o[parts[i]] = value;
+                }
+            }
+            return value;
+        }
+
+
 
         public static IList<string> Properties(JToken token)
         {

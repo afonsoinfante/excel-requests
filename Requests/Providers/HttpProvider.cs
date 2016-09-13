@@ -17,7 +17,7 @@ namespace Requests.Providers
             request.ProtocolVersion = HttpVersion.Version10;
             request.KeepAlive = false;
             request.ServicePoint.Expect100Continue = false;
-            request.UserAgent = "Excel-Requests";
+            request.UserAgent = "excel-requests";
             foreach (var header in headers)
                 request.Headers.Add(header.Key, header.Value);
             using (var httpResponse = request.GetResponse() as HttpWebResponse)
