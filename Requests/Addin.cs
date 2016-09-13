@@ -43,6 +43,51 @@ namespace Requests
         }
 
 
+
+
+        [ExcelFunction(Name = "REQUESTS.POST")]
+        public static object HttpPost(string url, object query, object data, object headers, object authentication, object timeout, object allowRedirects)
+        {
+            if (ExcelDnaUtil.IsInFunctionWizard()) return "";
+            if (data is ExcelMissing) return ExcelError.ExcelErrorValue;
+
+            try
+            {
+                url = Schema.Trim(url);
+
+                var httpHeaders = headers is ExcelMissing ?
+                    new Dictionary<string, string>() :
+                    ExcelParams.AsDictionary<string>(headers as object[,]);
+
+                if (!(authentication is ExcelMissing))
+                {
+                    var encoded = System.Convert.ToBase64String(System.Text.Encoding.GetEncoding("ISO-8859-1").GetBytes(authentication.ToString()));
+                    httpHeaders["Authorization"] = "Basic " + encoded;
+                }
+
+                JToken payload = null;
+                if(data is string)
+                {
+                    var token = cache.Get(data as string);
+                    if (token != null)
+                        payload = token;
+                }
+
+                if(payload == null)
+                    payload = new JValue(data);
+
+                var response = httpProvider.Post(url, httpHeaders, payload);
+                cache.Set(url, response);
+                return url;
+            }
+            catch (Exception e)
+            {
+                return e.Message;
+            }
+        }
+
+
+
         /*
         [ExcelFunction(Name = "REQUESTS.PUT")]
         public static object HttpPut(string url, string payload, object headers)

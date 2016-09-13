@@ -34,6 +34,17 @@ namespace Request.Test
             Assert.AreEqual(12.1, Addin.Get(key, "key1/key2"));
         }
 
+        [Test]
+        public void Can_Post()
+        {
+            var url = "https://httpbin.org/post";
+            Addin.Create("empty");
+            Assert.AreEqual(url, Addin.HttpPost(url, ExcelMissing.Value, "empty", 
+                ExcelMissing.Value, ExcelMissing.Value, ExcelMissing.Value, ExcelMissing.Value));
+        }
+
+        
+
 
 
     }

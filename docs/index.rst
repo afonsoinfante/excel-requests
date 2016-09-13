@@ -47,6 +47,5 @@ License & Authors
     :maxdepth: 2
     :hidden:
 
-	index
     installation
     quickstart
