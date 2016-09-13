@@ -49,3 +49,5 @@ License & Authors
 
     installation
     quickstart
+	get
+	post
