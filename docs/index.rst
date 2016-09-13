@@ -20,7 +20,7 @@ Installation
 
 The easiest way to install excel-requests is via the installation script:
 
-Download :download: `install.ps1 <install.ps1>`
+Download :download:`install.ps1 <install.ps1>`
 
 Right click the downloaded file
 
