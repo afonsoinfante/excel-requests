@@ -4,27 +4,15 @@ Quickstart
 ============
 
 
+Download the Example workbook :download:`Examples.xlsb <Examples.xlsb>`
 
-	>>> =REQUESTS.GET('https://api.github.com/user', auth=('user', 'pass'))
-    >>> r.status_code
-    200
-    >>> r.headers['content-type']
-    'application/json; charset=utf8'
-    >>> r.encoding
-    'utf-8'
-    >>> r.text
-    u'{"type":"User"...'
-    >>> r.json()
-    {u'private_gists': 419, u'total_private_repos': 77, ...}
 
->>> r = requests.get('https://api.github.com/user', auth=('user', 'pass'))
->>> r.status_code
-200
->>> r.headers['content-type']
-'application/json; charset=utf8'
->>> r.encoding
-'utf-8'
->>> r.text
-u'{"type":"User"...'
->>> r.json()
-{u'private_gists': 419, u'total_private_repos': 77, ...}
+
+	>>> =REQUESTS.GET("https://api.github.com/user",,, "<username>:<token>")
+    https://api.github.com/user
+    >>> =REQUESTS.DICT.KEYS("https://api.github.com/user#Json")
+    {"login";"id";"avatar_url";"gravatar_id";"url";"html_url";"followers_url";"following_url";"gists_url";"starred_url"}
+    >>> =REQUESTS.DICT.GET("https://api.github.com/user", "Json/url")
+    https://api.github.com/users/Pathio
+    >>> REQUESTS.FLUSH()
+    Flushed 1 key(s)
