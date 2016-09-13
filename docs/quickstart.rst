@@ -6,7 +6,7 @@ Quickstart
 
 Download the Example workbook :download:`Examples.xlsb <Examples.xlsb>`
 
-
+Retrieve Json from an HTTP API straight into Excel, authenticate via basic authentication::
 
 	>>> =REQUESTS.GET("https://api.github.com/user",,, "<username>:<token>")
     https://api.github.com/user
@@ -16,3 +16,4 @@ Download the Example workbook :download:`Examples.xlsb <Examples.xlsb>`
     https://api.github.com/users/Pathio
     >>> REQUESTS.FLUSH()
     Flushed 1 key(s)
+
