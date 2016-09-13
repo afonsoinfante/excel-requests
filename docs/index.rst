@@ -19,10 +19,11 @@ Installation
 -------------
 
 The easiest way to install excel-requests is via the installation script:
-
-Download :download:`install.ps1 <install.ps1>`
-
-Right click the downloaded file
+1. Download :download:`install.ps1 <install.ps1>`
+2. Open a File Explorer and go to the downloaded file's folder
+3. Right click install.ps1
+4. Click Run with PowerShell
+5. Confirm everything works with the Example workbook :download:`Examples.xlsb <Examples.xlsb>`
 
 
 
