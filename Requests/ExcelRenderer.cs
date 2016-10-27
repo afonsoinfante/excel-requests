@@ -25,6 +25,9 @@ namespace Requests
             if (token.Type == JTokenType.Boolean)
                 return token.ToObject<bool>();
 
+            if (token.Type == JTokenType.Date)
+                return token.ToObject<DateTime>();
+
             if (token.Type == JTokenType.Array)
             {
                 if (!traverse)

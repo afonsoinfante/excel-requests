@@ -39,5 +39,12 @@ namespace Request.Test
         }
 
 
+        [Test]
+        public void Can_Render_DateTime()
+        {
+            var token = Parser.Parse(@"{""created_at"": ""2016-09-13T20:40:41Z""}");
+            var result = ExcelRenderer.Render(token["created_at"], "http://api.test.com/numbers", true);
+            Assert.AreEqual(new DateTime(2016, 9, 13, 20, 40, 41), result);
+        }
     }
 }

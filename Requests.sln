@@ -12,10 +12,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		.gitignore = .gitignore
 		appveyor.yml = appveyor.yml
 		docs\Examples.xlsb = docs\Examples.xlsb
+		docs\get.rst = docs\get.rst
 		docs\index.rst = docs\index.rst
 		docs\install.ps1 = docs\install.ps1
 		docs\installation.rst = docs\installation.rst
 		LICENSE.txt = LICENSE.txt
+		docs\post.rst = docs\post.rst
 		docs\quickstart.rst = docs\quickstart.rst
 		README.rst = README.rst
 	EndProjectSection
