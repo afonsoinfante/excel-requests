@@ -18,6 +18,7 @@ namespace Requests.Providers
             request.KeepAlive = false;
             request.ServicePoint.Expect100Continue = false;
             request.UserAgent = "excel-requests";
+            request.Accept = "application/json";
             foreach (var header in headers)
                 request.Headers.Add(header.Key, header.Value);
             using (var httpResponse = request.GetResponse() as HttpWebResponse)
